@@ -1,0 +1,41 @@
+{
+  "name": "bggscript",
+  "version": "0.0.1",
+  "description": "Playing with BGG XML",
+  "main": "index.js",
+  "scripts": {
+    "start": "node --openssl-legacy-provider index.js",
+    "build": "node --openssl-legacy-provider ./node_modules/.bin/webpack --config webpack.config.js",
+    "build:w": "node --openssl-legacy-provider ./node_modules/.bin/webpack --watch --config webpack.config.js",
+    "deploy": "docker build --tag bgg-stats .",
+    "docker-start": "docker run --publish 5000:5000 node-docker",
+    "migrate": "npx prisma migrate dev --name init"
+  },
+  "dependencies": {
+    "@webcomponents/webcomponentsjs": "2.2.10",
+    "chart.js": "^2.9.4",
+    "express": "^4.17.2",
+    "jquery": "^3.6.0",
+    "lit-element": "^2.2.1",
+    "lit-html": "^1.1.2"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.16.8",
+    "@babel/core": "^7.5.5",
+    "@babel/plugin-proposal-decorators": "^7.4.4",
+    "@babel/preset-env": "^7.5.5",
+    "@babel/preset-typescript": "^7.3.3",
+    "@babel/register": "^7.5.5",
+    "babel-loader": "^8.0.6",
+    "ts-loader": "^6.0.4",
+    "typescript": "^3.5.3",
+    "webpack": "^4.38.0",
+    "webpack-cli": "^3.3.6",
+    "webpack-dev-server": "^3.7.2"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "repository": {},
+  "license": "MIT"
+}

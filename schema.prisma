@@ -1,0 +1,32 @@
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+model User {
+  id           Int      @id @default(autoincrement())
+  name         String
+  collection   Boardgame[]
+}
+
+model Boardgame {
+  id              Int      @id
+  name            String
+  yearpublished   Int
+  own             Boolean
+  numplays        Int
+  thumbnail       String?
+  user            User?    @relation(fields: [userId], references: [id])
+  userId          Int?
+  plays           Play[]
+}
+
+model Play {
+  id           Int      @id
+  quantity     Int
+  date         DateTime
+  incomplete   Boolean
+  name         String
+  boardgame    Boardgame?    @relation(fields: [boardgameId], references: [id])
+  boardgameId  Int?
+}
