@@ -44,6 +44,9 @@ docker run -p 5000:5000 bgg-stats
 ```
 The app will be available at [http://localhost:5000](http://localhost:5000).
 
+### To Save the docker container to an importable file
+docker save -o bgg-stats.tar bgg-stats
+
 ## Development
 - To watch and rebuild the frontend bundle on changes:
   ```bash
