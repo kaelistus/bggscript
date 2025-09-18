@@ -1,5 +1,5 @@
 #central-tabs {
-    height: 1200px;
+    max-height: 1200px;
     width: 97vw;
     border-style: none;
 }

@@ -39,7 +39,7 @@ export class bggGraph extends LitElement {
       }
       </style>
       <div id="statsList">${this.gameStats}</div>
-      <div id="gamesPlayedDiv" style="position: relative; width:100%; max-width:1000px">
+      <div id="gamesPlayedDiv" style="position: relative; max-height:1200px; width:100%; max-width:1000px; aspect-ratio: 16/9;">
          <canvas id="gamesPlayed" style="width:100%">
          </canvas>
       </div>
@@ -96,7 +96,8 @@ export class bggGraph extends LitElement {
          },
          options: {
             responsive: true,
-            maintainAspectRatio: false,
+            maintainAspectRatio: true,
+            aspectRatio: 16/9,
             legend: {
                display: false
             },
