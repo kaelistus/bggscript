@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "start": "node --openssl-legacy-provider index.js",
-    "build": "node --openssl-legacy-provider ./node_modules/.bin/webpack --config webpack.config.js",
-    "build:w": "node --openssl-legacy-provider ./node_modules/.bin/webpack --watch --config webpack.config.js",
+    "build": "webpack --config webpack.config.js",
+    "build:w": "webpack --watch --config webpack.config.js",
     "deploy": "docker build --tag bgg-stats .",
     "docker-start": "docker run --publish 5000:5000 node-docker",
     "migrate": "npx prisma migrate dev --name init"

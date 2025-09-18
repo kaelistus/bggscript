@@ -75,7 +75,7 @@ class bggData {
                             }
                             nameArray.push({date, quantity});
                         };
-                        if ((playList[0].getAttribute("total") / 100) > page+1) {
+                        if ((playList[0].getAttribute("total") as any / 100) > page+1) {
                             return that.getBggPlays(userName, ++page, results);
                         } else {
                             that.bggPlays = results;

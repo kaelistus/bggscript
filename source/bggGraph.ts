@@ -1,6 +1,6 @@
 import { LitElement, html} from 'lit-element';
-import { unsafeHTML } from 'lit-html/directives/unsafe-html';
-import { Chart } from 'chart.js'
+import { unsafeHTML } from "lit/directives/unsafe-html.js";
+import { Chart, BarController, BarElement, CategoryScale, LinearScale} from 'chart.js'
 import { getBggData } from './bggData';
 
 export class bggGraph extends LitElement {
@@ -50,6 +50,13 @@ export class bggGraph extends LitElement {
    constructor() {
       super();
 
+      Chart.register(
+        BarController,
+        BarElement,
+        CategoryScale,
+        LinearScale
+      );
+
       this.gameSets = new Array(26);
       this.gameSetString = new Array(26);
       this.selectedGames = '';
@@ -88,6 +95,8 @@ export class bggGraph extends LitElement {
             ]
          },
          options: {
+            responsive: true,
+            maintainAspectRatio: false,
             legend: {
                display: false
             },
@@ -98,12 +107,10 @@ export class bggGraph extends LitElement {
                displayColors: false
             },
             scales: {
-               yAxes: [{
-                  ticks: {
-                     beginAtZero: true
-                  }
-               }]
-            }
+               y: {
+                 beginAtZero: true
+               }
+             }
          }
       };
 
@@ -163,9 +170,14 @@ export class bggGraph extends LitElement {
 
    onClick(e) {
       //TODO Put this in a separate element
-      let activeBars = this.playChart.getElementsAtEvent(e);
+      let activeBars = this.playChart.getElementsAtEventForMode(
+         e,
+         'nearest',  // mode: 'nearest', 'index', 'dataset', etc.
+         { intersect: true }, // options
+         true        // useFinalPosition
+       );
       if (activeBars.length != 0) {
-         var clickedElementindex = activeBars[0]["_index"];
+         var clickedElementindex = activeBars[0]["index"];
          let resultValue = parseInt(this.playChart.data.labels[clickedElementindex]);
          this.selectedGames = unsafeHTML(this.gameSetString[resultValue].join("<br>"));
       }
