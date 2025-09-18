@@ -12,8 +12,8 @@ export function initializeBggData(userName: string) {
 
 
 class bggData {
-    public bggCollection;
-    public bggPlays;
+    public bggCollection: Document | undefined;
+    public bggPlays: Map<string, any> | undefined;
     public fullyLoaded = false;
 
     constructor(userName?: string) {
@@ -21,7 +21,6 @@ class bggData {
             userName = 'kaelistus';
         }
         this.getBggData(userName);
-        // this.getBggPlays(userName);
     }
 
     private getBggData(userName: string) {
@@ -64,9 +63,9 @@ class bggData {
                     }
                     else {
                         for(var i = 0; i < gameList.length; i++) {
-                            const quantity = gameList[i].getAttribute("quantity");
-                            const date = gameList[i].getAttribute("date");
-                            const name = gameList[i].getElementsByTagName("item")[0].getAttribute("name");
+                            const quantity = gameList[i].getAttribute("quantity")!;
+                            const date = gameList[i].getAttribute("date")!;
+                            const name = gameList[i].getElementsByTagName("item")[0].getAttribute("name")!;
 
                             let nameArray = results.get(name);
                             if (!nameArray) {
