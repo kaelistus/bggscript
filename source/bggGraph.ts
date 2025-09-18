@@ -1,5 +1,5 @@
-import { LitElement, html} from 'lit-element';
-import { unsafeHTML } from "lit/directives/unsafe-html.js";
+import { LitElement, html} from 'lit';
+import { unsafeHTML } from "lit-html/directives/unsafe-html.js";
 import { Chart, BarController, BarElement, CategoryScale, LinearScale} from 'chart.js'
 import { getBggData } from './bggData';
 
@@ -39,7 +39,7 @@ export class bggGraph extends LitElement {
       }
       </style>
       <div id="statsList">${this.gameStats}</div>
-      <div id="gamesPlayedDiv" style="position: relative; max-height:1200px; width:100%; max-width:1000px; aspect-ratio: 16/9;">
+      <div id="gamesPlayedDiv" style="position: relative; max-height:1200px; width:100%; max-width:1000px; aspect-ratio: 2/1;">
          <canvas id="gamesPlayed" style="width:100%">
          </canvas>
       </div>
@@ -97,7 +97,7 @@ export class bggGraph extends LitElement {
          options: {
             responsive: true,
             maintainAspectRatio: true,
-            aspectRatio: 16/9,
+            aspectRatio: 2/1,
             legend: {
                display: false
             },

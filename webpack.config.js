@@ -28,7 +28,11 @@ const config = {  // Entry
           {
             loader: 'babel-loader',
             options: {
-              presets: [['@babel/preset-env', babelPresetEnvOptions]]
+              presets: [['@babel/preset-env', babelPresetEnvOptions]],
+              plugins: [
+                '@babel/plugin-transform-class-properties',
+                '@babel/plugin-transform-nullish-coalescing-operator'
+              ]
             }
           },
           { loader: 'ts-loader' }
